@@ -1,0 +1,146 @@
+/* 1. Global Styles & Fonts */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffe0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1, h2 {
+    font-family: 'Pacifico', cursive;
+    color: #a00060;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. Header & Main Layout */
+header {
+    background: linear-gradient(135deg, #ffc0cb, #e066ff);
+    padding: 30px 10px;
+    border-bottom: 5px solid #ffcc00;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 3em;
+    color: white;
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 3. Image Styling & Continuous Glow Animation */
+.hero img {
+    width: 100%;
+    max-width: 250px; 
+    height: auto;
+    border: 8px solid #fff; 
+    border-radius: ;
+    object-fit: cover;
+    margin: 20px auto;
+    
+    /* Apply the continuous animation */
+    animation: glow-pulse 3s infinite alternate; 
+    transition: transform 0.3s ease;
+}
+
+.hero img:hover {
+    transform: scale(1.02);
+}
+
+/* 4. Message Section */
+.message {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 30px 0;
+    line-height: 1.6;
+}
+
+.message p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    color: #4a4a4a;
+    /* Ensure Hindi/Hinglish text doesn't overflow */
+    word-wrap: break-word; 
+}
+
+/* 5. Footer */
+footer {
+    padding: 20px;
+    background-color: #e066ff;
+    color: white;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+/* 6. KEYFRAMES for Image Glow Animation */
+@keyframes glow-pulse {
+    0% { box-shadow: 0 0 10px #ffcc00; }
+    50% { box-shadow: 0 0 25px #ffcc00, 0 0 40px #e066ff; }
+    100% { box-shadow: 0 0 10px #ffcc00; }
+}
+
+/* 7. CONFETTI ANIMATION STYLES */
+#confetti-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; overflow: hidden; z-index: 9999;
+}
+
+.confetti {
+    position: absolute; width: 10px; height: 10px;
+    background-color: #ffcc00; border-radius: 50%; opacity: 0;
+    animation: fall 3s ease-out forwards; transform-origin: center center;
+}
+.confetti:nth-child(2n) { background-color: #ffc0cb; transform: rotate(45deg); }
+.confetti:nth-child(3n) { background-color: #e066ff; border-radius: 0; }
+
+@keyframes fall {
+    0% { opacity: 0; transform: translate(0, 0) rotateZ(0deg); }
+    10% { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--end-x), var(--end-y)) rotateZ(var(--rotation-end)); }
+}
+
+/* ---------------------------------------------------- */
+/* 8. MOBILE OPTIMIZATIONS (Media Query) */
+/* Apply these styles for screens smaller than 600px wide (standard phone size) */
+@media (max-width: 600px) {
+    
+    header h1 {
+        /* Reduce the main title size */
+        font-size: 2.2em;
+        padding: 0 5px; /* Add slight side padding */
+    }
+
+    .hero img {
+        /* Make the image a little smaller on the phone */
+        max-width: 80%;
+        border-width: 5px; /* Thinner border */
+    }
+
+    .message {
+        /* Reduce padding inside the message box */
+        padding: 20px 15px;
+        margin: 20px 5px; /* Adjust side margins slightly */
+    }
+
+    .message h2 {
+        /* Reduce the sub-heading size */
+        font-size: 1.5em;
+    }
+
+    .message p {
+        /* Slightly reduce font size for better reading flow on mobile */
+        font-size: 1em;
+    }
+}
