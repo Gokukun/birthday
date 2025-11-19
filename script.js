@@ -1,31 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. AUDIO AUTOPLAY FIX (CRITICAL) ---
-    // Get the audio element using the ID we added in index.html
+    // --- 1. AUDIO UNMUTE FIX ---
     const audio = document.getElementById('bdayAudio');
+    const unmutePrompt = document.getElementById('unmute-prompt');
 
-    // Function to start audio on the first click/touch
-    function startAudio() {
-        // Attempt to play the audio. This MUST be inside a user event handler.
-        audio.play().catch(error => {
-            // Log for debugging (not seen by the user)
-            console.log('Audio playback prevented:', error);
-        });
-        
-        // Remove the listeners after the first successful attempt (or failed attempt)
-        // so the function doesn't run every time they tap the screen.
-        document.removeEventListener('click', startAudio);
-        document.removeEventListener('touchstart', startAudio);
+    if (unmutePrompt) {
+        // Function to unmute the audio on click
+        function unmuteAudio() {
+            if (audio) {
+                // Unmute the audio element
+                audio.muted = false; 
+                // In some browsers, we might need to call play() again, just in case
+                audio.play(); 
+            }
+            // Hide the prompt once the music is started
+            unmutePrompt.style.display = 'none'; 
+
+            // Remove the listeners
+            unmutePrompt.removeEventListener('click', unmuteAudio);
+            unmutePrompt.removeEventListener('touchstart', unmuteAudio);
+        }
+
+        // Attach the function to the prompt button for both click and touch
+        unmutePrompt.addEventListener('click', unmuteAudio);
+        unmutePrompt.addEventListener('touchstart', unmuteAudio);
     }
-
-    // Attach the startAudio function to the first user click/touch event on the entire page
-    document.addEventListener('click', startAudio);
-    document.addEventListener('touchstart', startAudio); // CRITICAL for mobile/phone screens
     
     // --- 2. CONFETTI ANIMATION LOGIC ---
     const confettiContainer = document.getElementById('confetti-container');
 
-    // Function to create a single confetti particle
+    // Function to create a single confetti particle (rest of confetti logic remains the same)
     function createConfetti() {
+        // ... (existing confetti code) ...
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
 

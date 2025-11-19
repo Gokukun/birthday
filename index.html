@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="unmute-prompt" style="padding: 15px; background-color: #ffcc00; color: #a00060; font-weight: bold; font-size: 1.2em; cursor: pointer; display: block; text-align: center; border-radius: 0 0 10px 10px;">
+    Tap Here to Start the Birthday Music! 🔈
+    </div>
     
-    <audio id="bdayAudio" loop hidden>
-        <source src="bday_song.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <audio id="bdayAudio" autoplay loop hidden muted>
+    <source src="bday_song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
     <header>
         <h1>🎉🎈 A day to celebrate you 🥳🎂🎈</h1>
