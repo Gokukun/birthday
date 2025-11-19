@@ -7,18 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function startAudio() {
         // Attempt to play the audio. This MUST be inside a user event handler.
         audio.play().catch(error => {
-            // This catches the error if the browser still blocks it, which is rare after a click.
+            // Log for debugging (not seen by the user)
             console.log('Audio playback prevented:', error);
         });
         
-        // Remove the listeners after the first successful attempt 
+        // Remove the listeners after the first successful attempt (or failed attempt)
+        // so the function doesn't run every time they tap the screen.
         document.removeEventListener('click', startAudio);
         document.removeEventListener('touchstart', startAudio);
     }
 
     // Attach the startAudio function to the first user click/touch event on the entire page
     document.addEventListener('click', startAudio);
-    document.addEventListener('touchstart', startAudio); 
+    document.addEventListener('touchstart', startAudio); // CRITICAL for mobile/phone screens
     
     // --- 2. CONFETTI ANIMATION LOGIC ---
     const confettiContainer = document.getElementById('confetti-container');
